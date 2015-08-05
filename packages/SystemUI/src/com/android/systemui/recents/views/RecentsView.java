@@ -636,8 +636,7 @@ public class RecentsView extends FrameLayout implements TaskStackView.TaskStackV
         onRecentsHidden();
         mCb.onTaskLaunchFailed();
         // Launch task in floating mode
-        baseIntent.setFlags(Intent.FLAG_FLOATING_WINDOW
-                  | Intent.FLAG_ACTIVITY_NEW_TASK);
+        baseIntent.setFlags(Intent.FLAG_FLOATING_WINDOW | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         mContext.startActivity(baseIntent);
     }
 
