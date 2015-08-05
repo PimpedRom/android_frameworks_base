@@ -109,7 +109,7 @@ public class TaskViewHeader extends FrameLayout {
         mLightDismissDrawable = res.getDrawable(R.drawable.recents_dismiss_light);
         mDarkDismissDrawable = res.getDrawable(R.drawable.recents_dismiss_dark);
         mLightFloatDrawable = res.getDrawable(R.drawable.ic_floating_window_max);
-        mDarkFloatDrawable = res.getDrawable(R.drawable.ic_floating_window_max);
+        mDarkFloatDrawable = res.getDrawable(R.drawable.ic_floating_window_max_dark);
         mDismissContentDescription =
                 res.getString(R.string.accessibility_recents_item_will_be_dismissed);
 
