@@ -416,6 +416,8 @@ public class TaskView extends FrameLayout implements Task.TaskCallbacks,
         } else {
             // Hide the dismiss button
             mHeaderView.startLaunchTaskDismissAnimation();
+            // Hide the floating window button
+            mHeaderView.startLaunchTaskFloatAnimation();
             // If this is another view in the task grouping and is in front of the launch task,
             // animate it away first
             if (occludesLaunchTarget) {
@@ -668,6 +670,7 @@ public class TaskView extends FrameLayout implements Task.TaskCallbacks,
             // Rebind any listeners
             mHeaderView.mApplicationIcon.setOnClickListener(this);
             mHeaderView.mDismissButton.setOnClickListener(this);
+            mHeaderView.mFloatButton.setOnClickListener(this);
             mActionButtonView.setOnClickListener(this);
             if (Constants.DebugFlags.App.EnableDevAppInfoOnLongPress) {
                 if (mConfig.developerOptionsEnabled) {
@@ -688,6 +691,7 @@ public class TaskView extends FrameLayout implements Task.TaskCallbacks,
             // Unbind any listeners
             mHeaderView.mApplicationIcon.setOnClickListener(null);
             mHeaderView.mDismissButton.setOnClickListener(null);
+            mHeaderView.mFloatButton.setOnClickListener(null);
             mActionButtonView.setOnClickListener(null);
             if (Constants.DebugFlags.App.EnableDevAppInfoOnLongPress) {
                 mHeaderView.mApplicationIcon.setOnLongClickListener(null);
@@ -700,6 +704,7 @@ public class TaskView extends FrameLayout implements Task.TaskCallbacks,
     void setTouchEnabled(boolean enabled) {
         setOnClickListener(enabled ? this : null);
     }
+    
 
     /**** View.OnClickListener Implementation ****/
 
@@ -718,6 +723,10 @@ public class TaskView extends FrameLayout implements Task.TaskCallbacks,
                         }
                     } else if (v == mHeaderView.mDismissButton) {
                         dismissTask(0L);
+                    }  else if (v == mHeaderView.mFloatButton) {
+                        if (mCb != null) {
+                            mCb.onTaskFloatClicked(tv);
+                        }
                     }
                 }
             }, 125);
