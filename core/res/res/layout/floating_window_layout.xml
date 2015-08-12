@@ -113,5 +113,14 @@
             android:tag="floating_window_line" />
 
     </RelativeLayout>
-
+    
+    <RelativeLayout
+        android:id="@+id/floating_window_footer"
+        android:layout_width="match_parent"
+        android:layout_height="16dp"
+        android:background="#333333"
+        android:layout_alignParentBottom="true"
+        android:tag="floating_window_footer">
+        
+   </RelativeLayout>
 </RelativeLayout>

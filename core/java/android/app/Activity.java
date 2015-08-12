@@ -3169,6 +3169,16 @@ public class Activity extends ContextThemeWrapper
             setupTimeout();
         }
     }
+    
+    /**
+     * @hide
+     */
+    public void resizeFloatingWindow(int x, int y) {
+        WindowManager.LayoutParams lpp = mWindow.getAttributes();
+        lpp.width = lpp.x / x * mCurrentScreenWidth;
+        lpp.height = lpp.y / Y * mCurrentScreenWidth;
+        mWindow.setAttribute(lpp);
+    }
 
     /**
      * @hide

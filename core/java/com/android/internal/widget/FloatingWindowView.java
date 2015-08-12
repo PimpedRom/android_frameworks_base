@@ -82,6 +82,9 @@ public class FloatingWindowView extends RelativeLayout {
                                                "floating_window_label");
         mDividerViews = findViewByIdHelper(mTitleBarHeader, R.id.floating_window_line,
                                                "floating_window_line");
+                                               
+        mWindowFooter = (RelativeLayout) findViewByIdHelper(this, R.id.floating_window_footer,
+                                               "floating_window_footer");
 
         if (mTitleBarHeader == null
             || mTitleBarClose == null
@@ -89,7 +92,8 @@ public class FloatingWindowView extends RelativeLayout {
             || mTitleBarMin == null
             || mTitleBarMax == null
             || mAppLabel == null
-            || mDividerViews == null) {
+            || mDividerViews == null
+            || mWindowFooter == null) {
             return;
         }
 
@@ -193,6 +197,21 @@ public class FloatingWindowView extends RelativeLayout {
                                            && activity.getTimeoutDone());
                               activity.discardTimeout();
                               activity.setChangedPreviousRange(false);
+                              break;
+                      }
+                      return view.onTouchEvent(event);
+                 }
+        });
+        
+        mWindowFooter.setOnTouchListener(new View.OnTouchListener() {
+                 @Override
+                 public boolean onTouch(View view, MotionEvent event) {
+                     switch (event.getAction()) {
+                              break;
+                          case MotionEvent.ACTION_MOVE:
+                              activity.resizeFloatingWindow((int) event.getRawX(), (int) event.getRawY());
+                              break;
+                          case MotionEvent.ACTION_UP:
                               break;
                       }
                       return view.onTouchEvent(event);
